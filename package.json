@@ -1,0 +1,17 @@
+{
+  "name": "romantic-chat-app",
+  "version": "1.0.0",
+  "description": "A romantic chat app for Rav and Mon",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.4.1",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": "10.x"
+  }
+}
