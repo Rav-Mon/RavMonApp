@@ -1,14 +1,18 @@
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  height: 100%;
   font-family: 'Arial', sans-serif;
   background: linear-gradient(135deg, #6b7280, #ec4899);
-  min-height: 100vh;
+  overflow: hidden;
+}
+
+body {
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
   position: relative;
-  overflow: hidden;
 }
 
 body::before {
@@ -25,56 +29,52 @@ body::before {
 #login-screen {
   text-align: center;
   background: rgba(255, 255, 255, 0.9);
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 1s ease-in;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
+  width: 90%;
+  max-width: 400px;
 }
 
 #login-screen h1 {
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-size: 1.6em;
+  margin-bottom: 10px;
   color: #1e3a8a;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #login-screen button {
   background: linear-gradient(45deg, #10b981, #34d399);
   color: white;
   border: none;
-  padding: 12px 24px;
-  margin: 10px;
-  border-radius: 10px;
-  font-size: 1.1em;
+  padding: 8px 15px;
+  margin: 5px;
+  border-radius: 8px;
+  font-size: 0.9em;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 #login-screen button:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
 }
 
 #chat-screen {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 600px;
-  min-height: 100vh;
+  height: 100%;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-sizing: border-box;
+  /* Debug: Red border to confirm bounds */
+  border: 1px solid red;
 }
 
 #chat-header {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
   background: linear-gradient(90deg, #1e40af, #3b82f6);
   color: white;
   position: sticky;
@@ -83,18 +83,13 @@ body::before {
 }
 
 #profile-pic {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 5px;
   object-fit: cover;
   cursor: pointer;
   border: 2px solid #fff;
-  transition: transform 0.3s;
-}
-
-#profile-pic:hover {
-  transform: scale(1.1);
 }
 
 #profile-pic-input {
@@ -103,15 +98,14 @@ body::before {
 
 #chat-partner {
   margin: 0;
-  font-size: 1.3em;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  font-size: 1em;
 }
 
 #partner-status {
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  margin-left: 8px;
+  margin-left: 5px;
   display: inline-block;
 }
 
@@ -127,38 +121,33 @@ body::before {
   background: none;
   border: none;
   color: white;
-  font-size: 1.3em;
-  margin-left: 8px;
+  font-size: 1em;
+  margin-left: 5px;
   cursor: pointer;
-  transition: transform 0.3s, text-shadow 0.3s;
 }
 
 #call-buttons button:hover {
   transform: scale(1.2);
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
 #messages {
   flex: 1;
-  padding: 15px;
+  padding: 5px;
   overflow-y: auto;
   background: transparent;
-  margin-bottom: 70px; /* Increased for input-area */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  margin-bottom: 50px; /* Space for input-area */
+  -webkit-overflow-scrolling: touch;
+  /* Debug: Green border */
+  border: 1px solid green;
 }
 
 .message {
-  margin: 8px 0;
-  padding: 10px;
-  border-radius: 12px;
+  margin: 5px 0;
+  padding: 5px;
+  border-radius: 8px;
   max-width: 70%;
   word-wrap: break-word;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-}
-
-.message:hover {
-  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .message.sent {
@@ -173,28 +162,26 @@ body::before {
 }
 
 .message p {
-  margin: 5px 0;
+  margin: 3px 0;
 }
 
 .message .timestamp {
-  font-size: 0.7em;
+  font-size: 0.6em;
   opacity: 0.7;
 }
 
 .message img {
   max-width: 100%;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .delete-btn {
   background: none;
   border: none;
   color: #ef4444;
-  font-size: 0.9em;
+  font-size: 0.7em;
   cursor: pointer;
-  padding: 5px;
-  margin-top: 5px;
-  transition: transform 0.2s;
+  padding: 3px;
 }
 
 .delete-btn:hover {
@@ -203,28 +190,28 @@ body::before {
 
 #input-area {
   display: flex;
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
+  width: 100%;
+  padding: 5px;
+  padding-bottom: calc(5px + env(safe-area-inset-bottom));
   background: rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  z-index: 100;
-  max-width: 600px;
-  margin: 0 auto;
+  z-index: 1000;
   box-sizing: border-box;
+  /* Debug: Blue border */
+  border: 1px solid blue;
 }
 
 #message-input {
   flex: 1;
-  padding: 8px;
+  padding: 5px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 15px;
-  margin-right: 8px;
+  border-radius: 10px;
+  margin-right: 5px;
   background: rgba(255, 255, 255, 0.2);
   color: white;
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 
 #message-input::placeholder {
@@ -239,16 +226,14 @@ body::before {
   background: linear-gradient(45deg, #10b981, #34d399);
   color: white;
   border: none;
-  padding: 8px 15px;
-  border-radius: 15px;
+  padding: 5px 10px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 1em;
-  transition: transform 0.3s, box-shadow 0.3s;
+  font-size: 0.8em;
 }
 
 #send-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
 }
 
 #call-screen {
@@ -265,39 +250,35 @@ body::before {
 }
 
 #local-video, #remote-video {
-  width: 45%;
-  max-height: 40vh;
-  border-radius: 10px;
-  margin: 10px;
+  width: 90%;
+  max-height: 35vh;
+  border-radius: 8px;
+  margin: 5px;
   border: 2px solid #fff;
 }
 
 #call-controls {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 #call-timer {
   color: white;
-  margin-right: 20px;
-  font-size: 1.2em;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  margin-right: 10px;
+  font-size: 1em;
 }
 
 #end-call-btn {
   background: linear-gradient(45deg, #ef4444, #f87171);
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 5px 10px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 #end-call-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
 }
 
 #incoming-call {
@@ -306,17 +287,17 @@ body::before {
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.95);
-  padding: 20px;
-  border-radius: 15px;
+  padding: 10px;
+  border-radius: 10px;
   text-align: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   backdrop-filter: blur(10px);
 }
 
 #incoming-call p {
-  margin: 0 0 15px;
-  font-size: 1.1em;
+  margin: 0 0 8px;
+  font-size: 0.9em;
   color: #1e3a8a;
 }
 
@@ -324,31 +305,27 @@ body::before {
   background: linear-gradient(45deg, #10b981, #34d399);
   color: white;
   border: none;
-  padding: 10px 20px;
-  margin-right: 10px;
-  border-radius: 10px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 #accept-call-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
 }
 
 #reject-call-btn {
   background: linear-gradient(45deg, #ef4444, #f87171);
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 5px 10px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 #reject-call-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
 }
 
 @keyframes fadeIn {
@@ -358,68 +335,59 @@ body::before {
 
 @media (max-width: 600px) {
   #chat-screen {
-    min-height: 100vh;
     border-radius: 0;
-    padding-bottom: 70px; /* Space for input-area */
   }
   #chat-header {
-    padding: 8px;
+    padding: 4px;
   }
   #profile-pic {
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
   }
   #chat-partner {
-    font-size: 1.1em;
-  }
-  #partner-status {
-    width: 8px;
-    height: 8px;
-  }
-  #call-buttons button {
-    font-size: 1.2em;
-    margin-left: 6px;
-  }
-  #messages {
-    padding: 10px;
-    margin-bottom: 60px;
-  }
-  .message {
-    padding: 8px;
-    font-size: 0.85em;
-  }
-  .message .timestamp {
-    font-size: 0.65em;
-  }
-  #input-area {
-    padding: 8px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    max-width: 600px;
-    margin: 0 auto;
-    box-sizing: border-box;
-  }
-  #message-input {
-    padding: 6px;
-    font-size: 0.85em;
-  }
-  #send-btn {
-    padding: 6px 12px;
     font-size: 0.9em;
   }
-  #local-video, #remote-video {
-    width: 90%;
+  #partner-status {
+    width: 5px;
+    height: 5px;
+  }
+  #call-buttons button {
+    font-size: 0.9em;
+    margin-left: 4px;
+  }
+  #messages {
+    padding: 4px;
+    margin-bottom: 45px;
+  }
+  .message {
+    padding: 4px;
+    font-size: 0.75em;
+  }
+  .message .timestamp {
+    font-size: 0.55em;
+  }
+  #input-area {
+    padding: 4px;
+    padding-bottom: calc(4px + env(safe-area-inset-bottom));
+  }
+  #message-input {
+    padding: 4px;
+    font-size: 0.75em;
+    margin-right: 4px;
+  }
+  #send-btn {
+    padding: 4px 8px;
+    font-size: 0.75em;
   }
   #login-screen {
-    padding: 20px;
+    padding: 10px;
+    width: 95%;
   }
   #login-screen h1 {
-    font-size: 1.8em;
+    font-size: 1.4em;
   }
   #login-screen button {
-    padding: 10px 20px;
-    font-size: 1em;
+    padding: 6px 12px;
+    font-size: 0.8em;
   }
 }
