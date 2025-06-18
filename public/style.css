@@ -1,393 +1,56 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #6b7280, #ec4899);
-  overflow: hidden;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  position: relative;
-}
-
-body::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path d="M50 30 Q60 20 70 30 T90 50 T70 70 T50 50 T30 70 T10 50 T30 30 T50 30 Z" fill="white"/></svg>') repeat;
-  z-index: -1;
-}
-
-#login-screen {
-  text-align: center;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-  width: 90%;
-  max-width: 400px;
-}
-
-#login-screen h1 {
-  font-size: 1.6em;
-  margin-bottom: 10px;
-  color: #1e3a8a;
-}
-
-#login-screen button {
-  background: linear-gradient(45deg, #10b981, #34d399);
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  margin: 5px;
-  border-radius: 8px;
-  font-size: 0.9em;
-  cursor: pointer;
-}
-
-#login-screen button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
-}
-
-#chat-screen {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-sizing: border-box;
-  /* Debug: Red border to confirm bounds */
-  border: 1px solid red;
-}
-
-#chat-header {
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  background: linear-gradient(90deg, #1e40af, #3b82f6);
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-#profile-pic {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-right: 5px;
-  object-fit: cover;
-  cursor: pointer;
-  border: 2px solid #fff;
-}
-
-#profile-pic-input {
-  display: none;
-}
-
-#chat-partner {
-  margin: 0;
-  font-size: 1em;
-}
-
-#partner-status {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  margin-left: 5px;
-  display: inline-block;
-}
-
-.status.online {
-  background: #10b981;
-}
-
-.status.offline {
-  background: #ef4444;
-}
-
-#call-buttons button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1em;
-  margin-left: 5px;
-  cursor: pointer;
-}
-
-#call-buttons button:hover {
-  transform: scale(1.2);
-}
-
-#messages {
-  flex: 1;
-  padding: 5px;
-  overflow-y: auto;
-  background: transparent;
-  margin-bottom: 50px; /* Space for input-area */
-  -webkit-overflow-scrolling: touch;
-  /* Debug: Green border */
-  border: 1px solid green;
-}
-
-.message {
-  margin: 5px 0;
-  padding: 5px;
-  border-radius: 8px;
-  max-width: 70%;
-  word-wrap: break-word;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.message.sent {
-  background: linear-gradient(45deg, #3b82f6, #60a5fa);
-  color: white;
-  margin-left: auto;
-}
-
-.message.received {
-  background: linear-gradient(45deg, #ec4899, #f472b6);
-  color: white;
-}
-
-.message p {
-  margin: 3px 0;
-}
-
-.message .timestamp {
-  font-size: 0.6em;
-  opacity: 0.7;
-}
-
-.message img {
-  max-width: 100%;
-  border-radius: 5px;
-}
-
-.delete-btn {
-  background: none;
-  border: none;
-  color: #ef4444;
-  font-size: 0.7em;
-  cursor: pointer;
-  padding: 3px;
-}
-
-.delete-btn:hover {
-  transform: scale(1.2);
-}
-
-#input-area {
-  display: flex;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 5px;
-  padding-bottom: calc(5px + env(safe-area-inset-bottom));
-  background: rgba(255, 255, 255, 0.1);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  z-index: 1000;
-  box-sizing: border-box;
-  /* Debug: Blue border */
-  border: 1px solid blue;
-}
-
-#message-input {
-  flex: 1;
-  padding: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
-  margin-right: 5px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  font-size: 0.8em;
-}
-
-#message-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-#file-input {
-  display: none;
-}
-
-#send-btn {
-  background: linear-gradient(45deg, #10b981, #34d399);
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 0.8em;
-}
-
-#send-btn:hover {
-  transform: scale(1.05);
-}
-
-#call-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#local-video, #remote-video {
-  width: 90%;
-  max-height: 35vh;
-  border-radius: 8px;
-  margin: 5px;
-  border: 2px solid #fff;
-}
-
-#call-controls {
-  display: flex;
-  align-items: center;
-}
-
-#call-timer {
-  color: white;
-  margin-right: 10px;
-  font-size: 1em;
-}
-
-#end-call-btn {
-  background: linear-gradient(45deg, #ef4444, #f87171);
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-#end-call-btn:hover {
-  transform: scale(1.05);
-}
-
-#incoming-call {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.95);
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  backdrop-filter: blur(10px);
-}
-
-#incoming-call p {
-  margin: 0 0 8px;
-  font-size: 0.9em;
-  color: #1e3a8a;
-}
-
-#accept-call-btn {
-  background: linear-gradient(45deg, #10b981, #34d399);
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  margin-right: 5px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-#accept-call-btn:hover {
-  transform: scale(1.05);
-}
-
-#reject-call-btn {
-  background: linear-gradient(45deg, #ef4444, #f87171);
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-#reject-call-btn:hover {
-  transform: scale(1.05);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 600px) {
-  #chat-screen {
-    border-radius: 0;
-  }
-  #chat-header {
-    padding: 4px;
-  }
-  #profile-pic {
-    width: 25px;
-    height: 25px;
-  }
-  #chat-partner {
-    font-size: 0.9em;
-  }
-  #partner-status {
-    width: 5px;
-    height: 5px;
-  }
-  #call-buttons button {
-    font-size: 0.9em;
-    margin-left: 4px;
-  }
-  #messages {
-    padding: 4px;
-    margin-bottom: 45px;
-  }
-  .message {
-    padding: 4px;
-    font-size: 0.75em;
-  }
-  .message .timestamp {
-    font-size: 0.55em;
-  }
-  #input-area {
-    padding: 4px;
-    padding-bottom: calc(4px + env(safe-area-inset-bottom));
-  }
-  #message-input {
-    padding: 4px;
-    font-size: 0.75em;
-    margin-right: 4px;
-  }
-  #send-btn {
-    padding: 4px 8px;
-    font-size: 0.75em;
-  }
-  #login-screen {
-    padding: 10px;
-    width: 95%;
-  }
-  #login-screen h1 {
-    font-size: 1.4em;
-  }
-  #login-screen button {
-    padding: 6px 12px;
-    font-size: 0.8em;
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Rav & Mon's Romantic Chat</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico">
+  <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <div id="login-screen">
+    <h1>Rav & Mon's Romance</h1>
+    <button onclick="login('Rav')">Login as Rav</button>
+    <button onclick="login('Mon')">Login as Mon</button>
+  </div>
+  <div id="chat-screen" style="display:none;">
+    <div id="chat-header">
+      <label for="profile-pic-input">
+        <img id="profile-pic" src="/default-pic.png" alt="Your Profile">
+      </label>
+      <input type="file" id="profile-pic-input" accept="image/*">
+      <div>
+        <h2 id="chat-partner"></h2>
+        <div id="partner-status" class="status offline"></div>
+      </div>
+      <div id="call-buttons">
+        <button id="voice-call-btn" title="Voice Call">📞</button>
+        <button id="video-call-btn" title="Video Call">📹</button>
+      </div>
+    </div>
+    <div id="messages"></div>
+    <div id="input-area">
+      <input type="text" id="message-input" placeholder="Type a message...">
+      <input type="file" id="file-input" accept="image/*,.pdf,.doc,.docx">
+      <button id="send-btn" title="Send">➤</button>
+    </div>
+  </div>
+  <div id="call-screen" style="display:none;">
+    <video id="local-video" autoplay muted></video>
+    <video id="remote-video" autoplay></video>
+    <div id="call-controls">
+      <span id="call-timer">00:00</span>
+      <button id="end-call-btn">End Call</button>
+    </div>
+  </div>
+  <div id="incoming-call" style="display:none;">
+    <p>Incoming <span id="call-type"></span> Call from <span id="caller"></span></p>
+    <button id="accept-call-btn">Accept</button>
+    <button id="reject-call-btn">Reject</button>
+  </div>
+  <script src="/script.js"></script>
+</body>
+</html>
